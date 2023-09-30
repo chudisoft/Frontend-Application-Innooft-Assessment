@@ -5,21 +5,11 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 const Navbar = () => {
   const linkRef = useRef();
   const menuRef = useRef();
-  const links = [
-    {
-      name: 'Home',
-      path: '/'
-    },
-    // {
-    //   name: 'Home',
-    //   path: '/'
-    // },
-  ]
-
+  
   const handleClick = () => {
-    linkRef.current.classList.add("active");
-    menuRef.current.children[0].classList.add("closed");
-    menuRef.current.children[1].classList.add("active");
+    linkRef.current.classList.remove("active");
+    menuRef.current.children[0].classList.remove("closed");
+    menuRef.current.children[1].classList.remove("active");
   };
 
   const handleClose = () => {
@@ -28,44 +18,30 @@ const Navbar = () => {
     menuRef.current.children[1].classList.remove("active");
   };
 
-  const handleClicked = () => {
-    linkRef.current.classList.remove("active");
-    menuRef.current.children[0].classList.remove("closed");
-    menuRef.current.children[1].classList.remove("active");
-  };
-
   return (
-    <header className="navbar__header">
-      <div className="navbar__logo">
-        {/* <img src={logo} alt="planet" /> */}
-        <i className=' fa fa-4x text-primary fa-headphones'></i>
-        <h1 className="text-light">Music Collections</h1>
-      </div>
-      <nav className="navbar__links" ref={linkRef}>
-        <ul>
-          {links.map((link, idx) => (
-            <div key={link.name} style={{display: 'flex', gap: '0.5rem'}}>
-              <NavLink
-                onClick={handleClicked}
-                key={link.name}
-                to={link.path}
-                className="link"
-                style={({ isActive }) => {
-                  if (isActive) {
-                    return { textDecoration: "underline" };
-                  }
-                }}>
-                {link.name}
-              </NavLink>
-            </div>
-          ))}
-        </ul>
+    <>
+      <header className="bg-blue-600 p-4 text-white">
+        <img
+          src="https://img.innoloft.com/logo.svg"
+          alt="Innoloft Logo"
+          className="w-24 mx-auto"
+        />
+        <div className="toggleMenu" ref={menuRef}>
+          <HiMenuAlt3 className="menu" onClick={handleClick} />
+          <HiX className="close" onClick={handleClose} />
+        </div>
+      </header>
+      <nav className="bg-blue-700 text-white p-4">
+        <div className="toggleMenu" ref={menuRef}>
+          <HiMenuAlt3 className="menu" onClick={handleClick} />
+          <HiX className="close" onClick={handleClose} />
+        </div>
+          <ul className="flex justify-center space-x-4">
+              <li><a href="#main">Main Page</a></li>
+              <li><a href="#product">Product</a></li>
+          </ul>
       </nav>
-      <div className="toggleMenu" ref={menuRef}>
-        <HiMenuAlt3 className="menu" onClick={handleClick} />
-        <HiX className="close" onClick={handleClose} />
-      </div>
-    </header>
+    </>
   );
 };
 

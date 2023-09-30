@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
-const Product = ({ product }) => {
-  Product.propTypes = {
-    product: PropTypes.object.isRequired,
-  };
+const Product = () => {
+
+  const [productData, setProductData] = useState({});
+
+  useEffect(() => {
+    // Fetch product data from API and set it in the state
+    Axios.get('https://api-test.innoloft.com/product/6781/').then((response) => {
+      setProductData(response.data);
+    });
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
