@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
+import Loader from "../Loader/Loader";
+import Axios from "axios";
 
 const Product = () => {
 
   const [productData, setProductData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Fetch product data from API and set it in the state
     Axios.get('https://api-test.innoloft.com/product/6781/').then((response) => {
+      console.log(response.data);
       setProductData(response.data);
+      setIsLoaded(true);
     });
   }, []);
+
+  if(!isLoaded) return <Loader />;
 
   return (
     <div className="container mx-auto p-4">
@@ -24,7 +31,7 @@ const Product = () => {
           </div>
           <div className="md:w-2/3">
             <h2 className="text-3xl font-semibold">{productData.name}</h2>
-            <p className="text-gray-600 mb-2">{productData.type.name}</p>
+            {/* <p className="text-gray-600 mb-2">{productData.type.name}</p> */}
             <p className="text-gray-800">{productData.description}</p>
           </div>
         </div>

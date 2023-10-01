@@ -1,21 +1,16 @@
-import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import './Navbar.css';
 
 const Navbar = () => {
-  const linkRef = useRef();
-  const menuRef = useRef();
-  
+  const [show, setShow] = useState(false);
+
   const handleClick = () => {
-    linkRef.current.classList.remove("active");
-    menuRef.current.children[0].classList.remove("closed");
-    menuRef.current.children[1].classList.remove("active");
+    setShow(!show);
   };
 
   const handleClose = () => {
-    linkRef.current.classList.remove("active");
-    menuRef.current.children[0].classList.remove("closed");
-    menuRef.current.children[1].classList.remove("active");
+    setShow(!show);
   };
 
   return (
@@ -26,14 +21,13 @@ const Navbar = () => {
           alt="Innoloft Logo"
           className="w-24 mx-auto"
         />
-        <div className="toggleMenu" ref={menuRef}>
-          <HiMenuAlt3 className="menu" onClick={handleClick} />
-          <HiX className="close" onClick={handleClose} />
+        <div className="toggleMenu">
+          {!show && <HiMenuAlt3 className="menu" onClick={handleClick} />}
+          {show && <HiX className="close" onClick={handleClose} />}
         </div>
       </header>
-      <nav className="bg-blue-700 text-white p-4">
-        <div className="toggleMenu" ref={menuRef}>
-          <HiMenuAlt3 className="menu" onClick={handleClick} />
+      <nav className={`${show ? '' : 'hide'} bg-blue-700 text-white p-4 side-nav`}>
+        <div className="toggleMenu">
           <HiX className="close" onClick={handleClose} />
         </div>
           <ul className="flex justify-center space-x-4">
