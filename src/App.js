@@ -4,21 +4,29 @@ import {
   Routes,
   Outlet,
 } from 'react-router-dom';
+import { useState } from 'react';
 import ErrorPage from './routes/error-page';
 import Navbar from './components/Navbar/Navbar';
 import './index.css';
 // import Products from './components/Products/Products';
 import Product from './components/Products/Product';
 import ProductUpdate from './components/Products/ProductUpdate';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(!show);
+  };
+
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <main id="content" className="container mx-auto p-4">
+        <Navbar handleCloseClick={handleClose} />
+        <main id="content" className={`${show ? 'shown' : ''} container mx-auto p-4`}>
           <Routes>
-            <Route path="/" element={<Product />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/product" element={<Product />} />
             <Route path="/product/:edit" element={<ProductUpdate />} />
             <Route path="*" element={<ErrorPage />} />

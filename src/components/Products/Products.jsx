@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 import { useSelector } from 'react-redux';
-import './Product.css';
 
 function Products() {
   const productsAvailable = useSelector((state) => state.products.products);

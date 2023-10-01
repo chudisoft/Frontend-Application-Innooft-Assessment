@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import Loader from '../Loader/Loader';
+import apiBase from '../../constants';
 
-const ProductUpdate = ({ productData }) => {
-  Product.propTypes = {
-    productData: PropTypes.object.isRequired,
-  };
+const ProductUpdate = () => {
+// const ProductUpdate = ({ productData }) => {
+  // Product.propTypes = {
+  //   productData: PropTypes.object.isRequired,
+  // };
 
-  // const [productData, setProductData] = useState({});
-  const [updatedData, setUpdatedData] = useState({});
+  const [productData, setProductData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [video, setVideo] = useState('');
 
   useEffect(() => {
     // Fetch product data from API and set it in the state
-    Axios.get('/api/product/:id').then((response) => {
+    Axios.get(apiBase + '6781/').then((response) => {
       setProductData(response.data);
+      setIsLoaded(true);
     });
   }, []);
 
@@ -23,10 +30,12 @@ const ProductUpdate = ({ productData }) => {
 
   const handleSave = () => {
     // Send a PUT request to update product data with updatedData
-    Axios.put('/api/product/:id', updatedData).then(() => {
+    Axios.put(apiBase + '6781/', updatedData).then(() => {
       // Handle successful update
     });
   };
+
+  if(!isLoaded) return <Loader />;
 
   return (
     <div>

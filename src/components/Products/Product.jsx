@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
 import Axios from "axios";
+import apiBase from "../../constants";
 
 const Product = () => {
 
@@ -9,7 +10,7 @@ const Product = () => {
 
   useEffect(() => {
     // Fetch product data from API and set it in the state
-    Axios.get('https://api-test.innoloft.com/product/6781/').then((response) => {
+    Axios.get(apiBase + '6781/').then((response) => {
       console.log(response.data);
       setProductData(response.data);
       setIsLoaded(true);
@@ -20,6 +21,9 @@ const Product = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <div className="w-100 flex flex-row-reverse space-x-4 space-x-reverse">
+        <a className="btn-edit" href="/product/edit">Edit</a>
+      </div>
       <div className="bg-white shadow-md p-4 rounded-lg">
         <div className="flex flex-col md:flex-row items-center md:space-x-4">
           <div className="md:w-1/3">

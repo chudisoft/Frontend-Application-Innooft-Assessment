@@ -1,16 +1,58 @@
+header,
+.w-100 {
+  width: 100%;
+}
+
 .side-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
   padding: 1em;
   margin: 0;
   position: absolute;
   left: 0;
-  width: 320px;
-  max-width: 100vw;
-  height: 100vh;
+  display: none;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.side-nav ul {
+  padding: 1em;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.d-flex,
+#content,
+.App {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gap-1 {
+  gap: 1em;
+}
+
+.shown {
+  display: block;
 }
 
 .hide {
   display: none;
+}
+
+.toggleMenu {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .side-nav {
+    width: 20%;
+    position: inherit;
+  }
+
+  #content.shown {
+    width: 78%;
+  }
+
 }
