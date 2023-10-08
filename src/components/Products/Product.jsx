@@ -22,7 +22,7 @@ const Product = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="w-100 flex flex-row-reverse space-x-4 space-x-reverse">
-        <a className="btn-edit" href="/product/edit">Edit</a>
+        <a className="btn-edit" href={`/product/edit/${productData.id}`}>Edit</a>
       </div>
       <div className="bg-white shadow-md p-4 rounded-lg">
         <div className="flex flex-col md:flex-row items-center md:space-x-4">

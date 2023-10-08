@@ -28,7 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/product" element={<Product />} />
-            <Route path="/product/:edit" element={<ProductUpdate />} />
+            <Route path="/product/edit/:id" element={<ProductUpdate />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
           <Outlet />
